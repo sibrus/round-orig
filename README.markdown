@@ -58,7 +58,8 @@ Here are the quick list of install instructions if you want to get the audio stu
 * It should just hang in the terminal - this is normal
 
 * Then try this in the ruby console
-```
+
+```ruby
 gem 'ruby-mpd'
 require 'ruby-mpd'
 mpd = MPD.new
