@@ -58,14 +58,15 @@ Here are the quick list of install instructions if you want to get the audio stu
 * It should just hang in the terminal - this is normal
 
 * Then try this in the ruby console
+```
+gem 'ruby-mpd'
+require 'ruby-mpd'
+mpd = MPD.new
+mpd.connect
+mpd.update
 
-    gem 'ruby-mpd'
-    require 'ruby-mpd'
-    mpd = MPD.new
-    mpd.connect
-    mpd.update
+#wait a second
 
-    #wait a second
-
-    mpd.add 'relative/path/to/music.mp3'
-    mpd.play
+mpd.add 'relative/path/to/music.mp3'
+mpd.play
+```
