@@ -1,4 +1,4 @@
-== Hi, Kyle!
+#Hi, Kyle!
 
 I'm in ur repo, haxoring ur code.
 
@@ -59,13 +59,13 @@ Here are the quick list of install instructions if you want to get the audio stu
 
 * Then try this in the ruby console
 
-  gem 'ruby-mpd'
-  require 'ruby-mpd'
-  mpd = MPD.new
-  mpd.connect
-  mpd.update
+    gem 'ruby-mpd'
+    require 'ruby-mpd'
+    mpd = MPD.new
+    mpd.connect
+    mpd.update
 
-  #wait a second
+    #wait a second
 
-  mpd.add 'relative/path/to/music.mp3'
-  mpd.play
+    mpd.add 'relative/path/to/music.mp3'
+    mpd.play
