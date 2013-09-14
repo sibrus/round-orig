@@ -64,9 +64,7 @@ require 'ruby-mpd'
 mpd = MPD.new
 mpd.connect
 mpd.update
-
 #wait a second
-
 mpd.add 'relative/path/to/music.mp3'
 mpd.play
 ```
