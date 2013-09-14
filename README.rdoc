@@ -1,28 +1,71 @@
-== README
+== Hi, Kyle!
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I'm in ur repo, haxoring ur code.
 
-Things you may want to cover:
+Anyways, my findings so far are pretty good, I have accomplished the following:
 
-* Ruby version
+* Got music playing on OS X via MPD
 
-* System dependencies
+* Verified support for mp3, m4a/aac, and flac (everything ever is supported, just not personally tested)
 
-* Configuration
+* Gapless playback is apparently working (as far as my ears can tell, tested with a shpongle album)
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Got the ruby bindings working, can play files, skip to next track, manipulate playlist from ruby console
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+
+I would suggest that you don't worry about the actual audio-playing and assume that it will "Just Work" what you need to know about it is the following:
+
+* You have a queue of files that you can modify (a playlist)
+
+* To add stuff to the playlist, you need to know the relative path of the file you want
+
+* You can get back a list of files in the current playlist/queue, along with your current position in said queue
+
+* You can skip to the next/previous item in the queue, play/pause/stop, etc
+
+
+
+I still have a few technical details with MPD to work out, namely:
+
+* Turning the itunes XML into an MPD database (not strictly necessary but it would prevent MPD from having to scan the music library initially)
+
+* A nice way to add media to both the rails app database and the MPD database without having to use iTunes (Adding more music should be easy, and ideally be allowed to happen on-site with minimum fuss)
+
+
+
+
+Here are the quick list of install instructions if you want to get the audio stuff working
+
+* Install homebrew - http://brew.sh/
+
+* > brew install mpd
+
+* > gem install ruby-mpd
+
+* I didn't add the gem to the gem to the bundle yet...
+
+* Check out the ruby-mpd docs: https://github.com/archSeer/ruby-mpd
+
+* To configure MPD requires a tiny bit of work, I've included my config file in the root of the repo (mpd.conf)
+
+* Edit your music directory in the mpd.conf file, put a few albums in it (nothing big just for quick testing)
+
+* Try running MPD:
+
+* > mpd --no-daemon /path/to/mpd.conf
+
+* It should just hang in the terminal - this is normal
+
+* Then try this in the ruby console
+
+gem 'ruby-mpd'
+require 'ruby-mpd'
+mpd = MPD.new
+mpd.connect
+mpd.update
+
+#wait a second
+
+mpd.add 'relative/path/to/music.mp3'
+mpd.play
